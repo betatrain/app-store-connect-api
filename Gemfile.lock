@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    app-store-connect-api (0.0.1)
+      jwt (~> 2.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    jwt (2.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  app-store-connect-api!
+
+BUNDLED WITH
+   1.16.3
