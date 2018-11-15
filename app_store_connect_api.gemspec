@@ -19,6 +19,6 @@ Gem::Specification.new do |spec|
   spec.test_files     = spec.files.grep('^(test|spec|features)/')
   spec.require_paths  = ['lib']
 
-  spec.add_dependency 'jwt', '~> 2.1.0'
+  spec.add_dependency 'jwt', '~> 1.0'
   spec.add_dependency 'httparty', '~> 0.16.3'
 end
