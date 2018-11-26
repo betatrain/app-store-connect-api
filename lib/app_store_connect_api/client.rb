@@ -8,17 +8,27 @@
 
 require 'base64'
 require 'jwt'
-require 'httparty'
+require 'json_api_client'
 
+require 'app_store_connect_api/testflight/apps'
 require 'app_store_connect_api/testflight/beta_testers'
 
 module AppStoreConnectAPI
 
-  class Client
-    include HTTParty
-    base_uri 'https://api.appstoreconnect.apple.com/v1'
-    headers 'Authorization' => "Bearer #{@token}"
+  class Base < JsonApiClient::Resource
+    self.site = 'https://api.appstoreconnect.apple.com/v1'
+  end
 
+  class BetaTesters < AppStoreConnectAPI::Base
+    def self.table_name
+      "betaTesters"
+    end
+  end
+
+  class Apps < AppStoreConnectAPI::Base
+  end
+
+  class Client
     attr_accessor :token
 
     # Configure the client
@@ -53,6 +63,7 @@ module AppStoreConnectAPI
       { 'Authorization' => "Bearer #{@token}" }
     end
 
+    include AppStoreConnectAPI::TestFlight::Apps
     include AppStoreConnectAPI::TestFlight::BetaTesters
 
   end

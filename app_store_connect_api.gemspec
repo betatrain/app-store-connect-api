@@ -20,5 +20,5 @@ Gem::Specification.new do |spec|
   spec.require_paths  = ['lib']
 
   spec.add_dependency 'jwt', '~> 1.0'
-  spec.add_dependency 'httparty', '~> 0.16.3'
+  spec.add_dependency 'json_api_client', '~> 1.7.0'
 end

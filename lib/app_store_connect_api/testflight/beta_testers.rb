@@ -4,12 +4,16 @@ module AppStoreConnectAPI
 
       # Find and list beta testers for all apps, builds, and beta groups.
       def beta_testers
-        self.class.get("/betaTesters", headers: self.headers)
+        AppStoreConnectAPI::BetaTesters.with_headers(self.headers) do
+          AppStoreConnectAPI::BetaTesters.all
+        end
       end
 
       # Get a specific beta tester.
       def beta_tester(id)
-        self.class.get("/betaTesters/#{id}", headers: self.headers)
+        AppStoreConnectAPI::BetaTesters.with_headers(self.headers) do
+          AppStoreConnectAPI::BetaTesters.find(id)
+        end
       end
       
     end

@@ -4,12 +4,16 @@ module AppStoreConnectAPI
 
       # Find and list apps added in App Store Connect.
       def apps
-        self.class.get("/apps", headers: self.headers)
+        AppStoreConnectAPI::Apps.with_headers(self.headers) do
+          AppStoreConnectAPI::Apps.all
+        end
       end
 
-      # Get information about a specific app.
+      # # Get information about a specific app.
       def app(id)
-        self.class.get("/apps/#{id}", headers: self.headers)
+        AppStoreConnectAPI::Apps.with_headers(self.headers) do
+          AppStoreConnectAPI::Apps.find(id)
+        end
       end
 
     end
