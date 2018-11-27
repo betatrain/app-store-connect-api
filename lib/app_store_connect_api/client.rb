@@ -38,13 +38,13 @@ module AppStoreConnectAPI
     #
     # @param issuer_id [String] the issuer id found under the users and access page in App Store Connect
     # @param key_id [String] the key id specific to the following access key
-    # @param access_key_path [String] path to the access key p8 file used to generate the jwt for authentication with the api
-    def initialize(issuer_id, key_id, access_key_path)
+    # @param access_key [File] access key p8 file used to generate the jwt for authentication with the api
+    def initialize(issuer_id, key_id, access_key)
       raise ConfigurationError, 'issuer_id is required' if issuer_id.nil?
       raise ConfigurationError, 'key_id is required' if key_id.nil?
-      raise ConfigurationError, 'access_key_path is required' if access_key_path.nil?
+      raise ConfigurationError, 'access_key is required' if access_key.nil?
 
-      private_key = OpenSSL::PKey.read(File.read(access_key_path))
+      private_key = OpenSSL::PKey.read(access_key)
       @token = JWT.encode(
         {
           iss: issuer_id,
